@@ -1,3 +1,5 @@
+<?php ob_start(); ?>
+
 <h1>Ma Todo List</h1>
 <a href="">Ajouter une nouvelle tâche</a>
 <ul>
@@ -7,3 +9,7 @@
         <a href="">❌</a>
     </li>
 </ul>
+
+<?php $content = ob_get_clean(); ?>
+
+<?= htmlspecialchars($content) ; ?>

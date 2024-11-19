@@ -68,7 +68,7 @@ class Router {
         $requestUrl = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
         // Récupérer la méthode HTTP utilisée pour la requête
-        $requestMethod = parse_url($_SERVER['REQUEST_METHOD']);
+        $requestMethod = $_SERVER['REQUEST_METHOD'];
 
         // Parcourir toutes les routes enregistrées
         foreach ($this->routes  as $route) {
@@ -78,7 +78,6 @@ class Router {
 
                //Si une correspondance est trouvée exécute l'action associée.
                call_user_func($route['action']); 
-               
                return; // Termine la méthode après avoir exécuter l'action.
             }
         }

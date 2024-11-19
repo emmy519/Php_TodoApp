@@ -8,12 +8,12 @@ class TodoController {
             session_start(); //Récupérer la session existante
         }
 
-        $todos = $_SESSION["todos"];
+        $todos = $_SESSION["todos"] ?? []; // SI $todos est NULL on prend le tableau vide
         
-        //Charger la Vuye "Views/index.php"
+        //Charger la Vue "Views/index.php"
         // require __DIR__ ."/../Views/index.php"; 
 
-        require dirname(__DIR__) ."/../Views/index.php"; //Renvoie le dossier parrent du dossier parent
+        require dirname(__DIR__) ."/Views/index.php"; //Renvoie le dossier parent du dossier parent
 
     }
 
