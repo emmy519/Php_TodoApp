@@ -11,8 +11,9 @@ class TodoController {
         $todos = $_SESSION["todos"];
         
         //Charger la Vuye "Views/index.php"
-        require __DIR__ ."/../Views/index.php"; 
-        require dirname(__DIR__) ."/Views/index.php"; //Renvoie le dossier parrent du dossier parent
+        // require __DIR__ ."/../Views/index.php"; 
+
+        require dirname(__DIR__) ."/../Views/index.php"; //Renvoie le dossier parrent du dossier parent
 
     }
 
