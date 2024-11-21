@@ -66,4 +66,10 @@ class TodoController {
     header('Location: /');
     exit;
 }
+
+    public function update() {
+       
+    header('Location: /');
+    exit;
+}
 }
