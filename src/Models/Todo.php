@@ -1,30 +1,25 @@
 <?php
 namespace App\Models;
 
-use DB\Database;
 
-class Todo {
+class Todo extends Model {
     /**
      * Récupère toutes les tâches dans la BDD
      * @return array
      */
     public function getAll() {
-         // Récupérer l'instance de connexion à la DB
-         $db = Database::getInstance();
-
+ 
          //Récupérer les tâches depui la BDD
-         $query = $db->query("SELECT * FROM todos;"); //prépare la qequête
+         $query = $this->db->query("SELECT * FROM todos;"); //prépare la qequête
          return $query->fetchAll(); // retourne le résultat de l'exécution de la requête
        
     }
     public function add(string $task) {
-
-         //Récupérer l'instance de connexion à la BDD
-         $db = Database::getInstance();
+               
          // Prépare la requête SQL pour insérer une nouvelle tâche dans la table "todos".
          // Les placeholders `:task` et `:done` sont utilisés pour éviter les injections SQL.
          //Cela sécurise les données entrées par l'utilisateur.
-         $stmt = $db->prepare("INSERT INTO todos (task,done) VALUES(:task, :done)"); //prépare la requête
+         $stmt = $this->db->prepare("INSERT INTO todos (task,done) VALUES(:task, :done)"); //prépare la requête
          
          // Exécute de la requête préparée avec des valeurs spécifiques  fournies dans un tableau associatif
          // - `:task` contient la description de la tâche saisie par l'utilisateur
@@ -41,9 +36,7 @@ class Todo {
      */
     public function toggle(int $id) {
 
-        // Récupérer l'instance de connexion à la DB
-        $db = Database::getInstance();
-        $stmt = $db->prepare("UPDATE todos SET done = NOT done WHERE id = :id");
+        $stmt = $this->db->prepare("UPDATE todos SET done = NOT done WHERE id = :id");
         $stmt->execute(["id" => (int) $id]);
     }
 
@@ -53,11 +46,9 @@ class Todo {
      * @return bool
      */
     public function delete(int $id) {
-// Récupérer l'instance de connexion à la DB
-$db = Database::getInstance();
-$stmt = $db->prepare("DELETE FROM todos WHERE id = :id;"); //$stmt pour "prepared statement" en anglais, "requête préparée" en français donc stmt === statement.
-// 
-return $stmt->execute(["id" => (int) $id]);
+
+        $stmt = $this->db->prepare("DELETE FROM todos WHERE id = :id;"); //$stmt pour "prepared statement" en anglais, "requête préparée" en français donc stmt === statement.
+        return $stmt->execute(["id" => (int) $id]);
 
     }
 }

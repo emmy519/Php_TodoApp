@@ -14,11 +14,10 @@ class TodoController {
 
     public function index(){
 
-       $todos = $this->todoModel->getAll();
+        $todos = $this->todoModel->getAll();
         //Charger la Vue "Views/index.php"
         // require __DIR__ ."/../Views/index.php"; 
         require dirname(__DIR__) ."/Views/index.php"; //Renvoie le dossier parent du dossier parent
-
     }
 
 
