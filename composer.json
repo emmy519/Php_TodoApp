@@ -14,5 +14,8 @@
             "email": "godonouscharmelle@gmail.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "scripts": {
+        "start": "php -S localhost:7777 -t public"
+    }
 }
