@@ -21,6 +21,7 @@ $router->post("/add", [$todoController, 'add']);
 $router->get("/toggle", [$todoController, 'toggle']);
 $router->get("/delete", [$todoController, 'delete']);
 $router->get("/update", [$todoController, 'update']);
+$router->post("/update", [$todoController, 'update']);
 
 //Résoudre la route corespondante
 $router->resolve();

@@ -50,6 +50,7 @@ class Router {
             'url' => $url,
             'action' => $action
         ];
+        // echo "Route enregistrée : $method $url<br>";
     }
 
 

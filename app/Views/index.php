@@ -3,7 +3,7 @@
 <h1>Ma Todo List</h1>
 <a href="/add">Ajouter une nouvelle tâche</a>
 <ul>
-<?php foreach($todos as $todo): ?>
+<?php foreach($data as $todo): ?>
     <li>
         <span style="text-decoration: <?= $todo['done'] ? 'line-through' : 'none'?>">
             <?= htmlspecialchars($todo['task']) ?>

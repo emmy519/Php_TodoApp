@@ -2,6 +2,9 @@
 namespace App\Models;
 
 
+use PDO;
+
+
 class Todo extends Model {
     /**
      * Récupère toutes les tâches dans la BDD
@@ -51,4 +54,34 @@ class Todo extends Model {
         return $stmt->execute(["id" => (int) $id]);
 
     }
+    // public function update($task,  $id) {
+    //     if (empty($task)) {
+    //         throw new InvalidArgumentException("The task cannot be empty.");
+    //     }
+
+    //     $stmt = $this->db->prepare( "UPDATE todos SET task = :task  WHERE id = :id"); //$stmt pour "prepared statement" en anglais, "requête préparée" en français donc stmt === statement.
+    //     return $stmt->execute([":task" =>$task, ":id" => $id]);
+
+    // }
+
+
+
+
+
+    public function update(int $id, string $newTask)
+    {
+        $stmt = $this->db->prepare("UPDATE todos SET task = :task , done = :done WHERE id = :id;");
+        $stmt->execute(["id" => (int) $id, ":task" => $newTask, ":done" => 0]);
+    }
+
+    public function getById(int $id)
+{
+   
+    $query = "SELECT * FROM todos WHERE id = :id LIMIT 1";
+    $stmt = $this->db->prepare($query);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    return $stmt->fetch(PDO::FETCH_ASSOC);  // Retourner la tâche sous forme de tableau associatif
+}
 }
