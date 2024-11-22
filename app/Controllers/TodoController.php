@@ -4,10 +4,10 @@ namespace App\Controllers;
 use App\Models\Todo;
 use DB\Database; 
 
-class TodoController {
+class TodoController extends Controller {
 
     private Todo $todoModel;
-
+     
     public function __construct() {
         $this->todoModel = new Todo();
     }
@@ -17,7 +17,8 @@ class TodoController {
         $todos = $this->todoModel->getAll();
         //Charger la Vue "Views/index.php"
         // require __DIR__ ."/../Views/index.php"; 
-        require dirname(__DIR__) ."/Views/index.php"; //Renvoie le dossier parent du dossier parent
+        // require dirname(__DIR__) ."/Views/index.php"; //Renvoie le dossier parent du dossier parent
+        $this->view("index" );
     }
 
 
@@ -30,11 +31,14 @@ class TodoController {
                 $this->todoModel->add($task);
                
             }
-            header('Location: /');
-            exit;
+            $this->redirect("/");
+            
         }
+
         // Charhger la vue add.php
-        require dirname(__DIR__) ."/Views/add.php";
+        // require dirname(__DIR__) ."/Views/add.php";
+        $this->view("add");
+
     }
      
     public function delete(){
@@ -45,8 +49,8 @@ class TodoController {
           $this->todoModel->delete((int) $id);
             };
         
-        header('Location: /');
-        exit;
+            $this->redirect("/");
+
     }
 
     public function toggle() {
@@ -55,8 +59,8 @@ class TodoController {
        $this->todoModel->toggle((int) $id);
         }
     
-        header('Location: /');
-        exit;
+        $this->redirect("/");
+
     }
 
 //     public function update() {
