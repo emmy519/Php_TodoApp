@@ -1,6 +1,9 @@
+<?php include 'head.php' ?>
+
 <?php ob_start(); ?>
 
-<h1>Ma Todo List</h1>
+
+<h2>Ma Todo List</h2>
 <a href="/add">Ajouter une nouvelle tâche</a>
 <ul>
 <?php foreach($data as $todo): ?>

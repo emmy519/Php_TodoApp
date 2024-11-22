@@ -13,6 +13,7 @@ class TodoController extends Controller {
 
     public function index(){
 
+        UserController::checkAuth();
          $todos = $this->todoModel->getAll();
         //Charger la Vue "Views/index.php"
         // require __DIR__ ."/../Views/index.php"; 
@@ -30,7 +31,7 @@ class TodoController extends Controller {
                 $this->todoModel->add($task);
                
             }
-            $this->redirect("/");
+            $this->redirect("/home");
             
         }
 
@@ -48,7 +49,7 @@ class TodoController extends Controller {
           $this->todoModel->delete((int) $id);
             };
         
-            $this->redirect("/");
+            $this->redirect("/home");
 
     }
 
@@ -58,7 +59,7 @@ class TodoController extends Controller {
        $this->todoModel->toggle((int) $id);
         }
     
-        $this->redirect("/");
+        $this->redirect("/home");
 
     }
 
@@ -80,7 +81,7 @@ class TodoController extends Controller {
                     $this->todoModel->update((int)$id, $newTask);
 
                     // Rediriger vers la page d'accueil après la mise à jour
-                    $this->redirect('/');
+                    $this->redirect('/home');
                 } else {
                     $this->redirect('/update?id=' . $id);  // Redirige vers le formulaire avec l'ID de la tâche
                 }
@@ -91,11 +92,11 @@ class TodoController extends Controller {
                 $this->View("update", ["todoEdit" => $todoToEdit]);  // Passer la tâche sous la clé "todoEdit"
             } else {
                 // Si la tâche n'existe pas, rediriger vers la page d'accueil
-                $this->redirect('/');
+                $this->redirect('/home');
             }
         } else {
             // Si l'ID n'est pas fourni, rediriger vers la page d'accueil
-            $this->redirect('/');
+            $this->redirect('/home');
         }
     }
 

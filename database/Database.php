@@ -57,5 +57,12 @@ class Database {
         return self::$instanceDb;
     }   
 
+    //  /**
+    //  * Ferme la connexion à la base de données
+    //  */
+    // public static function closeInstance(): void {
+    //     self::$instanceDb = null;
+    // }
+
     
 }

@@ -1,8 +1,7 @@
 <?php
 namespace App\Models;
 
-
-use PDO;
+use InvalidArgumentException;
 
 
 class Todo extends Model {
